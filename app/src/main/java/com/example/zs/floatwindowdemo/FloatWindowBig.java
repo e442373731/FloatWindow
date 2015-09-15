@@ -25,8 +25,8 @@ public class FloatWindowBig extends LinearLayout {
         close.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //close big window
-
+                MyWindowManager.removeBigWindow(context);
+                MyWindowManager.removeSmallWindow(context);
                 Intent intent = new Intent(getContext(), FloatWindowService.class);
                 context.stopService(intent);
             }
@@ -34,7 +34,8 @@ public class FloatWindowBig extends LinearLayout {
         back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //关闭大窗体 打开小的
+                MyWindowManager.removeBigWindow(context);
+                MyWindowManager.createSmallFloatWindow(context);
             }
         });
     }

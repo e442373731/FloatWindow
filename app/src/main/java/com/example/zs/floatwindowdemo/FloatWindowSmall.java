@@ -51,8 +51,7 @@ public class FloatWindowSmall extends LinearLayout {
         viewWidth = view.getLayoutParams().width;
         viewHeight = view.getLayoutParams().height;
         TextView percentView = (TextView) findViewById(R.id.percent_text);
-        //设置为获取来的百分比
-        percentView.setText("");
+        percentView.setText(MyWindowManager.getUsedPercentValue(context));
     }
 
     @Override
@@ -73,7 +72,7 @@ public class FloatWindowSmall extends LinearLayout {
                 break;
             case MotionEvent.ACTION_UP:
                 if(Math.abs(xDown - xInScreen) < 5 && Math.abs(yDowm - yInScreen) < 5){
-                    openBigWindow();
+                    openBigWindow(getContext());
                 }
             default:
                 break;
@@ -84,8 +83,9 @@ public class FloatWindowSmall extends LinearLayout {
     /**
      * 打开大窗口
      */
-    private void openBigWindow(){
-        //
+    private void openBigWindow(Context context){
+        MyWindowManager.removeSmallWindow(context);
+        MyWindowManager.createBigWindow(context);
     }
 
     /**

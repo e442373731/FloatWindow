@@ -43,11 +43,22 @@ public class FloatWindowService extends Service {
         @Override
         public void run() {
             if(isHome() && !MyWindowManager.isWindowShowing()){
-                //创建小窗体 - 通过handler
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        MyWindowManager.createBigWindow(getApplicationContext());
+                    }
+                });
             }else if(!isHome() && MyWindowManager.isWindowShowing()){
-                //移除窗体
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        MyWindowManager.removeSmallWindow(getApplicationContext());
+                        MyWindowManager.removeBigWindow(getApplicationContext());
+                    }
+                });
             }else if(isHome() && MyWindowManager.isWindowShowing()){
-                //更新percent text view
+                MyWindowManager.updateUsedMemory(getApplicationContext());
             }
         }
     }
