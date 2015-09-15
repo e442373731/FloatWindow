@@ -17,7 +17,7 @@ public class FloatWindowBig extends LinearLayout {
     public FloatWindowBig(final Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.big_float_window,this);
-        View view = findViewById(R.id.small_window_layout);
+        View view = findViewById(R.id.big_window_layout);
         viewHeight = view.getLayoutParams().height;
         viewWidth = view.getLayoutParams().width;
         Button close = (Button)findViewById(R.id.close_button);

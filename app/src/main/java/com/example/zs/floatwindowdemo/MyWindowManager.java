@@ -2,6 +2,7 @@ package com.example.zs.floatwindowdemo;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -98,14 +99,13 @@ public class MyWindowManager {
             bigWindow = new FloatWindowBig(context);
             if(bigWindowParams == null){
                 bigWindowParams = new  WindowManager.LayoutParams();
-                bigWindowParams.x = width / 2;
-                bigWindowParams.y = height / 2;
+                bigWindowParams.x = width / 2 - FloatWindowBig.viewWidth / 2;
+                bigWindowParams.y = height / 2 - FloatWindowBig.viewHeight / 2;
                 bigWindowParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-                bigWindowParams.gravity = Gravity.CENTER;
-                bigWindowParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                bigWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
                 bigWindowParams.width = FloatWindowBig.viewWidth;
                 bigWindowParams.height = FloatWindowBig.viewHeight;
+                bigWindowParams.format = PixelFormat.RGBA_8888;
             }
             windowManager.addView(bigWindow, bigWindowParams);
         }

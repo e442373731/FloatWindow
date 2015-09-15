@@ -1,6 +1,7 @@
 package com.example.zs.floatwindowdemo;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -103,7 +104,7 @@ public class FloatWindowSmall extends LinearLayout {
     public int getStutasBarHeight() {
         if (statusHeight == 0) {
             try {
-                Class<?> c = Class.forName("cpm.android.internal.R$dimen");
+                Class<?> c = Class.forName("com.android.internal.R$dimen");
                 Object o = c.newInstance();
                 Field field = c.getField("status_bar_height");
                 int x = (Integer) field.get(o);

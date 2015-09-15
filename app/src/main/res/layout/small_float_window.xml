@@ -2,13 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="60dp"
     android:layout_height="25dp"
-    android:id="@+id/small_window_layout"
-    android:background="@drawable/bg_small">
+    android:id="@+id/small_window_layout">
 
     <TextView
         android:id="@+id/percent_text"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:background="#ffffff"/>
+        android:textColor="#ffffff"/>
 </LinearLayout>

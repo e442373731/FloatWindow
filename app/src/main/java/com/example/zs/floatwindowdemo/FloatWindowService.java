@@ -46,7 +46,7 @@ public class FloatWindowService extends Service {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        MyWindowManager.createBigWindow(getApplicationContext());
+                        MyWindowManager.createSmallFloatWindow(getApplicationContext());
                     }
                 });
             }else if(!isHome() && MyWindowManager.isWindowShowing()){
@@ -58,7 +58,12 @@ public class FloatWindowService extends Service {
                     }
                 });
             }else if(isHome() && MyWindowManager.isWindowShowing()){
-                MyWindowManager.updateUsedMemory(getApplicationContext());
+               handler.post(new Runnable() {
+                   @Override
+                   public void run() {
+                       MyWindowManager.updateUsedMemory(getApplicationContext());
+                   }
+               });
             }
         }
     }
@@ -86,5 +91,13 @@ public class FloatWindowService extends Service {
         ActivityManager manager = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> tasks = manager.getRunningTasks(1);
         return getHomes().contains(tasks.get(0).topActivity.getPackageName());
+    }
+
+    @Override
+    public void onDestroy(){
+        if(timer != null){
+            timer.cancel();
+            timer = null;
+        }
     }
 }
